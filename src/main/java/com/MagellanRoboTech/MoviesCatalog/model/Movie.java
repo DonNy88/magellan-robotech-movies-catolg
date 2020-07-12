@@ -1,9 +1,12 @@
 package com.MagellanRoboTech.MoviesCatalog.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+@Data
 @Entity
 public class Movie {
 
@@ -20,5 +23,4 @@ public class Movie {
 
     @ManyToMany
     private Set<MovieDirector> movieDirectors;
-
 }
