@@ -1,0 +1,16 @@
+version: '2'
+services:
+  db:
+    image: 'bitnami/postgresql:12.3.0-debian-10-r56'
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=m0v1es_user
+      - POSTGRESQL_PASSWORD=sodoucs39sq4v5vv
+      - POSTGRESQL_DATABASE=movie_db
+#  backend:
+#    depends_on:
+#      - db
+#    build: .
+#    ports:
+#      - 8080:8080
