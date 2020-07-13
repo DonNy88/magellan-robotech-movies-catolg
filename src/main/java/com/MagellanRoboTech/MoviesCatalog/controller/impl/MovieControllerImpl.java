@@ -2,9 +2,11 @@ package com.MagellanRoboTech.MoviesCatalog.controller.impl;
 
 import com.MagellanRoboTech.MoviesCatalog.controller.MovieController;
 import com.MagellanRoboTech.MoviesCatalog.dto.RequestGetMovieDTO;
+import com.MagellanRoboTech.MoviesCatalog.dto.RequestPutMovieDTO;
 import com.MagellanRoboTech.MoviesCatalog.dto.ResponseDTO;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
 import com.MagellanRoboTech.MoviesCatalog.service.MovieService;
+
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,8 @@ public class MovieControllerImpl implements MovieController {
     @Override
     @GetMapping("/all")
     public ResponseEntity<ResponseDTO<Iterable<Movie>>> getAllMovies() {
+        log.trace("GET /movies/all");
+
         ResponseDTO response = ResponseDTO.builder()
                 .body(movieService.getAllMovies())
                 .build();
@@ -40,7 +44,7 @@ public class MovieControllerImpl implements MovieController {
     @Override
     @GetMapping
     public ResponseEntity<ResponseDTO<Movie>> getMovie(@PathParam("movieId") Long movieId) {
-        log.trace("GET movies?movieId={}", movieId);
+        log.trace("GET /movies?movieId={}", movieId);
 
         ResponseDTO response = ResponseDTO.builder()
                 .body(movieService.getMovie(movieId))
@@ -52,7 +56,8 @@ public class MovieControllerImpl implements MovieController {
     @Override
     @PostMapping
     public ResponseEntity<ResponseDTO<Movie>> addMovie(@RequestBody @Valid RequestGetMovieDTO movie) {
-        log.error("POST movie");
+        log.trace("POST /movies {}", movie.toString());
+
         ResponseDTO response = ResponseDTO.builder()
                 .status(HttpStatus.CREATED)
                 .body(movieService.saveMovie(new ModelMapper().map(movie, Movie.class)))
@@ -63,10 +68,11 @@ public class MovieControllerImpl implements MovieController {
 
     @Override
     @PutMapping
-    public ResponseEntity<ResponseDTO<Movie>> updateMovie(@RequestBody Movie movie) {
-        log.error("PUT movie");
+    public ResponseEntity<ResponseDTO<Movie>> updateMovie(@RequestBody @Valid RequestPutMovieDTO movie) {
+        log.trace("PUT /movies {}", movie.toString());
+
         ResponseDTO response = ResponseDTO.builder()
-                .body(movieService.updateMovie(movie))
+                .body(movieService.updateMovie(new ModelMapper().map(movie, Movie.class)))
                 .build();
 
         return ResponseEntity.ok(response);
@@ -75,7 +81,8 @@ public class MovieControllerImpl implements MovieController {
     @Override
     @DeleteMapping
     public ResponseEntity<ResponseDTO<Void>> deleteMovie(@PathParam("movieId") Long movieId) {
-        log.error("DEL movie");
+        log.trace("DELETE /movies?movieId={}", movieId);
+
         movieService.removeMovie(movieId);
         ResponseDTO response = ResponseDTO.builder().build();
 

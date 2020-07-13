@@ -20,13 +20,13 @@ public class Movie {
     private String overview;
     @NotNull
     @Min(value = 1, message = "The movie should lasts at least 1 minute")
-    private int duration;
+    private Long duration;
     @NotNull
     @Min(value = 1, message = "The rating must be greater than or equal to 1")
     @Max(value = 5, message = "The rating must be less than or equal to 5")
-    private int rating;
+    private Integer rating;
 
-    @NotNull(message = "Each Movie has at least a Movie Director")
-    @ManyToOne(cascade = CascadeType.ALL)
-    private MovieDirector movieDirector;
+//    @NotNull(message = "Each Movie has at least a Movie Director")
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private MovieDirector movieDirector;
 }

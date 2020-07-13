@@ -1,5 +1,6 @@
 package com.MagellanRoboTech.MoviesCatalog.service.impl;
 
+import com.MagellanRoboTech.MoviesCatalog.exception.NoArgsProvidedException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieDirectorFoundException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieFoundException;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
@@ -8,8 +9,10 @@ import com.MagellanRoboTech.MoviesCatalog.repository.MovieDirectorRepository;
 import com.MagellanRoboTech.MoviesCatalog.repository.MovieRepository;
 import com.MagellanRoboTech.MoviesCatalog.service.MovieService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Optional;
 
@@ -45,25 +48,39 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie saveMovie(Movie movie) throws NoMovieDirectorFoundException{
-        Optional<MovieDirector> movieDirector = movieDirectorRepository.findById(movie.getMovieDirector().getId());
-        if (!movieDirector.isPresent()) {
-            log.error("The passed movie director doesn't exist");
-            throw new NoMovieDirectorFoundException();
-        }
-
-        movie.setMovieDirector(movieDirector.get());
+//        Optional<MovieDirector> movieDirector = movieDirectorRepository.findById(movie.getMovieDirector().getId());
+//        if (!movieDirector.isPresent()) {
+//            log.error("The passed movie director doesn't exist");
+//            throw new NoMovieDirectorFoundException();
+//        }
+//
+//        movie.setMovieDirector(movieDirector.get());
 
         return movieRepository.save(movie);
     }
 
     @Override
-    public Movie updateMovie(Movie movie) throws NoMovieFoundException {
-        if (!movieRepository.existsById(movie.getId())) {
+    public Movie updateMovie(Movie movie) throws NoMovieFoundException, NoArgsProvidedException {
+        Optional<Movie> optionalMovieToUpdate = movieRepository.findById(movie.getId());
+        if (!optionalMovieToUpdate.isPresent()) {
             log.error("No Movie with id {} found", movie.getId());
             throw new NoMovieFoundException();
         }
 
-        return movieRepository.save(movie);
+        if (StringUtils.isAllBlank(movie.getOverview(), movie.getTitle())
+                && movie.getDuration() == null
+                && movie.getRating() == null) {
+            log.error("No args provided");
+            throw new NoArgsProvidedException();
+        }
+
+        Movie movieToUpdate = optionalMovieToUpdate.get();
+        movieToUpdate.setDuration(Optional.ofNullable(movie.getDuration()).orElse(movieToUpdate.getDuration()));
+        movieToUpdate.setOverview(Optional.ofNullable(movie.getOverview()).orElse(movieToUpdate.getOverview()));
+        movieToUpdate.setRating(Optional.ofNullable(movie.getRating()).orElse(movieToUpdate.getRating()));
+        movieToUpdate.setTitle(Optional.ofNullable(movie.getTitle()).orElse(movieToUpdate.getTitle()));
+
+        return movieRepository.save(movieToUpdate);
     }
 
     @Override
