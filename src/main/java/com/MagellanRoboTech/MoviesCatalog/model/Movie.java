@@ -3,8 +3,7 @@ package com.MagellanRoboTech.MoviesCatalog.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import javax.validation.constraints.*;
 
 @Data
 @Entity
@@ -14,13 +13,20 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "The field title cannot be blank")
     private String title;
-    private Date releaseDate;
+    @NotBlank(message = "The field overview cannot be blank")
+    @Size(max=255, message = "The overview max length is 255 characters")
     private String overview;
-    private int duration;
-    private boolean adult;
-    private int rating;
+    @NotNull
+    @Min(value = 1, message = "The movie should lasts at least 1 minute")
+    private Long duration;
+    @NotNull
+    @Min(value = 1, message = "The rating must be greater than or equal to 1")
+    @Max(value = 5, message = "The rating must be less than or equal to 5")
+    private Integer rating;
 
-    @ManyToMany
-    private Set<MovieDirector> movieDirectors;
+//    @NotNull(message = "Each Movie has at least a Movie Director")
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private MovieDirector movieDirector;
 }

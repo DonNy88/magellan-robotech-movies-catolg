@@ -3,7 +3,7 @@ package com.MagellanRoboTech.MoviesCatalog.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Data
@@ -14,11 +14,12 @@ public class MovieDirector {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "The field name cannot be blank")
     private String name;
     private String middleName;
+    @NotBlank(message = "The field name cannot be blank")
     private String surname;
-    private Date bornDate;
 
-    @ManyToMany
+    @OneToMany
     private Set<Movie> movies;
 }
