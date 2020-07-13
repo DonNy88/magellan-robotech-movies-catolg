@@ -54,21 +54,4 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity(responseDTO, responseDTO.getStatus());
     }
-
-//    /**
-//     *
-//     * @param ex
-//     * @param request
-//     * @return
-//     */
-//    @ExceptionHandler(BindException.class)
-//    public final ResponseEntity<Object> handleBindException(Exception ex, WebRequest request) {
-//        log.error(ex.getMessage(), ex);
-//
-//        ResponseDTO responseDTO = ResponseDTO.builder()
-//                .status(HttpStatus.BAD_REQUEST)
-//                .message(ex.getMessage()).build();
-//
-//        return new ResponseEntity(responseDTO,responseDTO.getStatus());
-//    }
 }

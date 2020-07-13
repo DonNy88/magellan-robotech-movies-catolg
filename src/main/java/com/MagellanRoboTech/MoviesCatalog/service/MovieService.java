@@ -1,5 +1,6 @@
 package com.MagellanRoboTech.MoviesCatalog.service;
 
+import com.MagellanRoboTech.MoviesCatalog.exception.NoArgsProvidedException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieDirectorFoundException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieFoundException;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
@@ -32,9 +33,10 @@ public interface MovieService {
      *
      * @param movie
      * @return
+     * @throws NoArgsProvidedException
      * @throws NoMovieFoundException
      */
-    Movie updateMovie(Movie movie) throws NoMovieFoundException;
+    Movie updateMovie(Movie movie) throws NoArgsProvidedException, NoMovieFoundException;
 
     /**
      *

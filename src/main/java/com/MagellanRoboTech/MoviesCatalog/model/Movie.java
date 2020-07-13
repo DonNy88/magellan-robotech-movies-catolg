@@ -26,7 +26,7 @@ public class Movie {
     @Max(value = 5, message = "The rating must be less than or equal to 5")
     private Integer rating;
 
-//    @NotNull(message = "Each Movie has at least a Movie Director")
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private MovieDirector movieDirector;
+    @NotNull(message = "Each Movie has a Movie Director")
+    @ManyToOne(cascade = CascadeType.ALL)
+    private MovieDirector movieDirector;
 }
