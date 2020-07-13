@@ -1,6 +1,6 @@
 package com.MagellanRoboTech.MoviesCatalog.controller;
 
-import com.MagellanRoboTech.MoviesCatalog.dto.RequestGetMovieDTO;
+import com.MagellanRoboTech.MoviesCatalog.dto.RequestPostMovieDTO;
 import com.MagellanRoboTech.MoviesCatalog.dto.RequestPutMovieDTO;
 import com.MagellanRoboTech.MoviesCatalog.dto.ResponseDTO;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
@@ -26,7 +26,7 @@ public interface MovieController {
      * @param movie
      * @return
      */
-    ResponseEntity<ResponseDTO<Movie>> addMovie(RequestGetMovieDTO movie) throws Exception;
+    ResponseEntity<ResponseDTO<Movie>> addMovie(RequestPostMovieDTO movie);
 
     /**
      *

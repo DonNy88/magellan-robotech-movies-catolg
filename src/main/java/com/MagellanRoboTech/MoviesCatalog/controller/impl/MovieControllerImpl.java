@@ -1,7 +1,7 @@
 package com.MagellanRoboTech.MoviesCatalog.controller.impl;
 
 import com.MagellanRoboTech.MoviesCatalog.controller.MovieController;
-import com.MagellanRoboTech.MoviesCatalog.dto.RequestGetMovieDTO;
+import com.MagellanRoboTech.MoviesCatalog.dto.RequestPostMovieDTO;
 import com.MagellanRoboTech.MoviesCatalog.dto.RequestPutMovieDTO;
 import com.MagellanRoboTech.MoviesCatalog.dto.ResponseDTO;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
@@ -55,7 +55,7 @@ public class MovieControllerImpl implements MovieController {
 
     @Override
     @PostMapping
-    public ResponseEntity<ResponseDTO<Movie>> addMovie(@RequestBody @Valid RequestGetMovieDTO movie) {
+    public ResponseEntity<ResponseDTO<Movie>> addMovie(@RequestBody @Valid RequestPostMovieDTO movie) {
         log.trace("POST /movies {}", movie.toString());
 
         ResponseDTO response = ResponseDTO.builder()
@@ -63,7 +63,7 @@ public class MovieControllerImpl implements MovieController {
                 .body(movieService.saveMovie(new ModelMapper().map(movie, Movie.class)))
                 .build();
 
-        return new ResponseEntity(response, HttpStatus.CREATED);
+        return new ResponseEntity(response, response.getStatus());
     }
 
     @Override

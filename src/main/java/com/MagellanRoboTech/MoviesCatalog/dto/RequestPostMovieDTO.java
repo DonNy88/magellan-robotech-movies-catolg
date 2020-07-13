@@ -1,19 +1,18 @@
 package com.MagellanRoboTech.MoviesCatalog.dto;
 
 import lombok.Data;
-import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.*;
 
 @Data
-public class RequestGetMovieDTO {
+public class RequestPostMovieDTO {
 
     @NotBlank(message = "The field title cannot be blank")
-    @Size(max=100, message = "The title max length is 25 characters")
+    @Size(max = 100, message = "The title max length is 25 characters")
     private String title;
 
     @NotBlank(message = "The field overview cannot be blank")
-    @Size(max=255, message = "The overview max length is 255 characters")
+    @Size(max = 255, message = "The overview max length is 255 characters")
     private String overview;
 
     @NotNull(message = "The field duration cannot be null")

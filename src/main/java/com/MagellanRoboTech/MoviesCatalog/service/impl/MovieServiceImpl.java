@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
+
 
 import java.util.Optional;
 
@@ -48,19 +48,19 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie saveMovie(Movie movie) throws NoMovieDirectorFoundException{
-//        Optional<MovieDirector> movieDirector = movieDirectorRepository.findById(movie.getMovieDirector().getId());
-//        if (!movieDirector.isPresent()) {
-//            log.error("The passed movie director doesn't exist");
-//            throw new NoMovieDirectorFoundException();
-//        }
-//
-//        movie.setMovieDirector(movieDirector.get());
+        Optional<MovieDirector> movieDirector = movieDirectorRepository.findById(movie.getMovieDirector().getId());
+        if (!movieDirector.isPresent()) {
+            log.error("The passed movie director doesn't exist");
+            throw new NoMovieDirectorFoundException();
+        }
+
+        movie.setMovieDirector(movieDirector.get());
 
         return movieRepository.save(movie);
     }
 
     @Override
-    public Movie updateMovie(Movie movie) throws NoMovieFoundException, NoArgsProvidedException {
+    public Movie updateMovie(Movie movie) throws NoArgsProvidedException, NoMovieFoundException {
         Optional<Movie> optionalMovieToUpdate = movieRepository.findById(movie.getId());
         if (!optionalMovieToUpdate.isPresent()) {
             log.error("No Movie with id {} found", movie.getId());
