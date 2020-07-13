@@ -1,10 +1,12 @@
 package com.MagellanRoboTech.MoviesCatalog.controller.impl;
 
 import com.MagellanRoboTech.MoviesCatalog.controller.MovieController;
-import com.MagellanRoboTech.MoviesCatalog.core.ResponseDTO;
+import com.MagellanRoboTech.MoviesCatalog.dto.RequestGetMovieDTO;
+import com.MagellanRoboTech.MoviesCatalog.dto.ResponseDTO;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
 import com.MagellanRoboTech.MoviesCatalog.service.MovieService;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +40,8 @@ public class MovieControllerImpl implements MovieController {
     @Override
     @GetMapping
     public ResponseEntity<ResponseDTO<Movie>> getMovie(@PathParam("movieId") Long movieId) {
+        log.trace("GET movies?movieId={}", movieId);
+
         ResponseDTO response = ResponseDTO.builder()
                 .body(movieService.getMovie(movieId))
                 .build();
@@ -47,11 +51,11 @@ public class MovieControllerImpl implements MovieController {
 
     @Override
     @PostMapping
-    public ResponseEntity<ResponseDTO<Movie>> addMovie(Movie movie) {
+    public ResponseEntity<ResponseDTO<Movie>> addMovie(@RequestBody @Valid RequestGetMovieDTO movie) {
         log.error("POST movie");
         ResponseDTO response = ResponseDTO.builder()
                 .status(HttpStatus.CREATED)
-                .body(movieService.saveMovie(movie))
+                .body(movieService.saveMovie(new ModelMapper().map(movie, Movie.class)))
                 .build();
 
         return new ResponseEntity(response, HttpStatus.CREATED);
@@ -59,7 +63,7 @@ public class MovieControllerImpl implements MovieController {
 
     @Override
     @PutMapping
-    public ResponseEntity<ResponseDTO<Movie>> updateMovie(Movie movie) {
+    public ResponseEntity<ResponseDTO<Movie>> updateMovie(@RequestBody Movie movie) {
         log.error("PUT movie");
         ResponseDTO response = ResponseDTO.builder()
                 .body(movieService.updateMovie(movie))

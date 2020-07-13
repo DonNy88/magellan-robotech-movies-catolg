@@ -1,5 +1,6 @@
 package com.MagellanRoboTech.MoviesCatalog.service;
 
+import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieDirectorFoundException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieFoundException;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
 
@@ -23,8 +24,9 @@ public interface MovieService {
      *
      * @param movie
      * @return
+     * @throws NoMovieDirectorFoundException
      */
-    Movie saveMovie(Movie movie);
+    Movie saveMovie(Movie movie) throws NoMovieDirectorFoundException;
 
     /**
      *

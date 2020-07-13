@@ -1,8 +1,8 @@
 package com.MagellanRoboTech.MoviesCatalog.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+public class NoMovieFoundException extends NotFoundException {
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class NoMovieFoundException extends RuntimeException {
+    public NoMovieFoundException() {
+        super("No movie found");
+    }
 }

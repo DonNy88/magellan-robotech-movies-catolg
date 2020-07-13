@@ -1,8 +1,7 @@
-package com.MagellanRoboTech.MoviesCatalog.core;
+package com.MagellanRoboTech.MoviesCatalog.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**

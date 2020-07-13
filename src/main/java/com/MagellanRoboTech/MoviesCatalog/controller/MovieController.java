@@ -1,6 +1,7 @@
 package com.MagellanRoboTech.MoviesCatalog.controller;
 
-import com.MagellanRoboTech.MoviesCatalog.core.ResponseDTO;
+import com.MagellanRoboTech.MoviesCatalog.dto.RequestGetMovieDTO;
+import com.MagellanRoboTech.MoviesCatalog.dto.ResponseDTO;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
 import org.springframework.http.ResponseEntity;
 
@@ -24,7 +25,7 @@ public interface MovieController {
      * @param movie
      * @return
      */
-    ResponseEntity<ResponseDTO<Movie>> addMovie(Movie movie);
+    ResponseEntity<ResponseDTO<Movie>> addMovie(RequestGetMovieDTO movie) throws Exception;
 
     /**
      *

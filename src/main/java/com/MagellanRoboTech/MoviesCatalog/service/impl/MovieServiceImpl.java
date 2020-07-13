@@ -1,7 +1,10 @@
 package com.MagellanRoboTech.MoviesCatalog.service.impl;
 
+import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieDirectorFoundException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieFoundException;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
+import com.MagellanRoboTech.MoviesCatalog.model.MovieDirector;
+import com.MagellanRoboTech.MoviesCatalog.repository.MovieDirectorRepository;
 import com.MagellanRoboTech.MoviesCatalog.repository.MovieRepository;
 import com.MagellanRoboTech.MoviesCatalog.service.MovieService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +19,12 @@ public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
 
+    private final MovieDirectorRepository movieDirectorRepository;
+
     @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository) {
+    public MovieServiceImpl(MovieRepository movieRepository, MovieDirectorRepository movieDirectorRepository) {
         this.movieRepository = movieRepository;
+        this.movieDirectorRepository = movieDirectorRepository;
     }
 
     @Override
@@ -38,7 +44,15 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie saveMovie(Movie movie) {
+    public Movie saveMovie(Movie movie) throws NoMovieDirectorFoundException{
+        Optional<MovieDirector> movieDirector = movieDirectorRepository.findById(movie.getMovieDirector().getId());
+        if (!movieDirector.isPresent()) {
+            log.error("The passed movie director doesn't exist");
+            throw new NoMovieDirectorFoundException();
+        }
+
+        movie.setMovieDirector(movieDirector.get());
+
         return movieRepository.save(movie);
     }
 
