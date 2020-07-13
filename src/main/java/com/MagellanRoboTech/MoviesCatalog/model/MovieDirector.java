@@ -8,17 +8,13 @@ import java.util.Set;
 
 @Data
 @Entity
-public class MovieDirector {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class MovieDirector extends BasicEntity {
 
     private String name;
     private String middleName;
     private String surname;
     private Date bornDate;
 
-    @ManyToMany
-    private Set<Movie> movies;
+//    @OneToMany
+//    private Set<Movie> movies;
 }
