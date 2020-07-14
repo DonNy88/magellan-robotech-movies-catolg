@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 public interface MovieController {
 
     /**
+     * GET /movies/all
+     *
+     * This endpoint handle
      *
      * @return
      */
