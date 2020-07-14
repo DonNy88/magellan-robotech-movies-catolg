@@ -1,6 +1,7 @@
 package com.MagellanRoboTech.MoviesCatalog.validation;
 
 import com.MagellanRoboTech.MoviesCatalog.dto.ResponseDTO;
+import com.MagellanRoboTech.MoviesCatalog.exception.MovieCatalogException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -54,4 +55,22 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(responseDTO, responseDTO.getStatus());
     }
+
+    /**
+     *
+     * @param ex
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(MovieCatalogException.class)
+    public final ResponseEntity<ResponseDTO<Void>> handleMovieCatalogException(Exception ex, WebRequest request) {
+        log.error(ex.getMessage(), ex);
+
+        ResponseDTO<Void> responseDTO = ResponseDTO.<Void>builder()
+                .status(HttpStatus.BAD_REQUEST)
+                .message(ex.getMessage()).build();
+
+        return new ResponseEntity<>(responseDTO, responseDTO.getStatus());
+    }
+
 }

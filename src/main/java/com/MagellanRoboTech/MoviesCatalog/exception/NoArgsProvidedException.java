@@ -1,6 +1,6 @@
 package com.MagellanRoboTech.MoviesCatalog.exception;
 
-public class NoArgsProvidedException extends RuntimeException {
+public class NoArgsProvidedException extends MovieCatalogException {
 
     public NoArgsProvidedException() {
         super("No arguments provided");
