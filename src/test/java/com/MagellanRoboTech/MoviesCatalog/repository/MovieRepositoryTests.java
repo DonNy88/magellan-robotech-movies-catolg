@@ -3,7 +3,6 @@ package com.MagellanRoboTech.MoviesCatalog.repository;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
 import com.MagellanRoboTech.MoviesCatalog.model.MovieDirector;
 import org.apache.commons.collections4.IterableUtils;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -39,9 +38,9 @@ public class MovieRepositoryTests {
     @Test
     public void findAllByRatingGreaterThanEqual_shouldReturnNoMovies() {
 
-        List<Movie> moviesAbove3Rating = IterableUtils.toList(movieRepository.findAllByRatingGreaterThanEqual(5));
+        List<Movie> moviesAbove4Rating = IterableUtils.toList(movieRepository.findAllByRatingGreaterThanEqual(5));
 
-        assertThat(moviesAbove3Rating).isEmpty();
+        assertThat(moviesAbove4Rating).isEmpty();
     }
 
     @Test
