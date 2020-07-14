@@ -19,12 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
-     *
-     * @param ex
-     * @param headers
-     * @param status
-     * @param request
-     * @return
+     * Please, @See {@link ResponseEntityExceptionHandler}
      */
     @Override
     protected ResponseEntity handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -40,10 +35,11 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
+     * Exception Handler that catch oll {@link NotFoundException} and response with Dto Object with NOT FOUND.
      *
-     * @param ex
-     * @param request
-     * @return
+     * @param ex the exception
+     * @param request the REST request
+     * @return A Dto Object with 404 Status Code. Please @see {@link ResponseDTO}
      */
     @ExceptionHandler(NotFoundException.class)
     public final ResponseEntity<ResponseDTO<Void>> handleNoMovieFoundException(Exception ex, WebRequest request) {
@@ -57,10 +53,11 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
+     * Exception Handler that catch oll {@link MovieCatalogException} and response with Dto Object with BAD REQUEST.
      *
-     * @param ex
-     * @param request
-     * @return
+     * @param ex the exception
+     * @param request the REST request
+     * @return A Dto Object with 400 Status Code. Please @see {@link ResponseDTO}
      */
     @ExceptionHandler(MovieCatalogException.class)
     public final ResponseEntity<ResponseDTO<Void>> handleMovieCatalogException(Exception ex, WebRequest request) {
@@ -74,10 +71,12 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
+     * General Exception Handler that catch oll {@link Exception} and response with Dto Object with INTERNAL SERVER ERROR.
+     * Not should be never invoked.
      *
-     * @param ex
-     * @param request
-     * @return
+     * @param ex the exception
+     * @param request the REST request
+     * @return A Dto Object with 500 Status Code. Please @see {@link ResponseDTO}
      */
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<ResponseDTO<Void>> handleGeneralException(Exception ex, WebRequest request) {

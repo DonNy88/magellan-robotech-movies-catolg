@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+/**
+ * Entity that maps the Db table movie.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,13 +27,13 @@ public class Movie {
     private String overview;
     @NotNull
     @Min(value = 1, message = "The movie should lasts at least 1 minute")
-    private Long duration;
+    private Long duration; // minutes of the movie
     @NotNull
     @Min(value = 1, message = "The rating must be greater than or equal to 1")
     @Max(value = 5, message = "The rating must be less than or equal to 5")
     private Integer rating;
 
-    @NotNull(message = "Each Movie has a Movie Director")
+    @NotNull(message = "Each Movie has to a Movie Director")
     @ManyToOne(cascade = CascadeType.ALL)
     private MovieDirector movieDirector;
 }

@@ -205,7 +205,7 @@ Fetch a movie by *movieId*
 #### POST /movies
 Add a Movie into the catolg
 ###### Request Body example
-```json
+```
 {
   "title": "Mummy", // Title of the movie
   "overview": "The best movie of the world", // Description of the movie
@@ -246,7 +246,7 @@ Add a Movie into the catolg
 #### PUT /movies
 Update a Movie
 ###### Request Body example
-```json
+```
 {
   "title": "Mummy", // Title of the movie
   "overview": "The best movie of the world", // Description of the movie
