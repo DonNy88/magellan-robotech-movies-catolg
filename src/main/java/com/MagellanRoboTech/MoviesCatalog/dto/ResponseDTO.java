@@ -5,8 +5,9 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 /**
+ *  Dto Class that is used for all response of this Spring Application.
  *
- * @param <T>
+ * @param <T> Object Type of the Object returned on body field of the response. Please, see the readme file for find out the Response schema
  */
 @Data
 @Builder
