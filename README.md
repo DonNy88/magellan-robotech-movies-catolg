@@ -145,19 +145,19 @@ Fetch all movies present on the system
         "name": "Donald",
         "middleName": "Emeka",
         "surname": "Achugo"
-      },
-      {
-        "id": 2,
-        "title": "Mask",
-        "overview": "The second best movie",
-        "duration": 230,
-        "rating": 3,
-        "movieDirector": {
-          "id": 1,
-          "name": "Donald",
-          "middleName": "Emeka",
-          "surname": "Achugo"
-        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Mask",
+      "overview": "The second best movie",
+      "duration": 230,
+      "rating": 3,
+      "movieDirector": {
+        "id": 1,
+        "name": "Donald",
+        "middleName": "Emeka",
+        "surname": "Achugo"
       }
     }
   ]
@@ -330,19 +330,19 @@ Fetch movies where the rating is greater than or equals to *aboveReting*
         "name": "Donald",
         "middleName": "Emeka",
         "surname": "Achugo"
-      },
-      {
-        "id": 2,
-        "title": "Mask",
-        "overview": "The second best movie",
-        "duration": 230,
-        "rating": 3,
-        "movieDirector": {
-          "id": 1,
-          "name": "Donald",
-          "middleName": "Emeka",
-          "surname": "Achugo"
-        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Mask",
+      "overview": "The second best movie",
+      "duration": 230,
+      "rating": 3,
+      "movieDirector": {
+        "id": 1,
+        "name": "Donald",
+        "middleName": "Emeka",
+        "surname": "Achugo"
       }
     }
   ]
@@ -383,19 +383,19 @@ Fetch Movies by *movieDirectorId*
         "name": "Donald",
         "middleName": "Emeka",
         "surname": "Achugo"
-      },
-      {
-        "id": 2,
-        "title": "Mask",
-        "overview": "The second best movie",
-        "duration": 230,
-        "rating": 3,
-        "movieDirector": {
-          "id": 1,
-          "name": "Donald",
-          "middleName": "Emeka",
-          "surname": "Achugo"
-        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Mask",
+      "overview": "The second best movie",
+      "duration": 230,
+      "rating": 3,
+      "movieDirector": {
+        "id": 1,
+        "name": "Donald",
+        "middleName": "Emeka",
+        "surname": "Achugo"
       }
     }
   ]
