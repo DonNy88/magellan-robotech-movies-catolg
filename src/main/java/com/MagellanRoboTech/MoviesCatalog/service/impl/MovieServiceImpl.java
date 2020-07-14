@@ -108,7 +108,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Iterable<Movie> searchMoviesAboveGivenRating(Long aboveRating) throws NoMovieFoundException, MovieRatingOutOfBoundsException {
+    public Iterable<Movie> searchMoviesAboveGivenRating(Integer aboveRating) throws NoMovieFoundException, MovieRatingOutOfBoundsException {
         if (aboveRating < 1 || aboveRating > 5) {
             log.debug("Rating must be greater than 0 and less then 6");
             throw new MovieRatingOutOfBoundsException();

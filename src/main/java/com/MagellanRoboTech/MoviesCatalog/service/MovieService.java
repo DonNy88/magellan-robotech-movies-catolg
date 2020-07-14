@@ -54,5 +54,5 @@ public interface MovieService {
      * @throws NoMovieFoundException
      * @throws MovieRatingOutOfBoundsException
      */
-    Iterable<Movie> searchMoviesAboveGivenRating(Long aboveRating) throws NoMovieFoundException, MovieRatingOutOfBoundsException;
+    Iterable<Movie> searchMoviesAboveGivenRating(Integer aboveRating) throws NoMovieFoundException, MovieRatingOutOfBoundsException;
 }

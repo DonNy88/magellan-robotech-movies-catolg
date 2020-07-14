@@ -12,5 +12,5 @@ public interface MovieRepository extends CrudRepository<Movie, Long> {
      * @param rating
      * @return
      */
-    Iterable<Movie> findAllByRatingGreaterThanEqual(Long rating);
+    Iterable<Movie> findAllByRatingGreaterThanEqual(Integer rating);
 }
