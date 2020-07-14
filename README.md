@@ -52,11 +52,11 @@ docker-compose up
 ## 🔧 Running the tests <a name = "tests"></a>
 
 ##### MS Dos
-```
+```bash
 ./mvnw.cmd test
 ```
 ##### Unix-like
-```
+```bash
 ./mvnw test
 ```
 ## ER Diagram <a name = "erDiagram"></a>
@@ -129,7 +129,7 @@ docker-compose up
 #### GET /movies/all
 Fetch all movies present on the system
 ###### Respone Body example
-```
+```json
 {
   "status": "OK",
   "message": "Success",
@@ -163,7 +163,7 @@ Fetch all movies present on the system
 }
 ```
 or
-```
+```json
 {
   "status": "OK",
   "message": "Success",
@@ -173,7 +173,7 @@ or
 #### GET /movies?movieId={}
 Fetch a movie by *movieId*
 ###### Respone Body example
-```
+```json
 {
   "id": 2,
   "title": "Mask",
@@ -191,7 +191,7 @@ Fetch a movie by *movieId*
 #### POST /movies
 Add a Movie into the catolg
 ###### Request Body example
-```
+```json
 {
   "title": "Mummy", // Title of the movie
   "overview": "The best movie of the world", // Description of the movie
@@ -201,7 +201,7 @@ Add a Movie into the catolg
 }
 ```
 ###### Response Body example
-```
+```json
 {
   "id": 3,
   "title": "Mummy",
@@ -219,7 +219,7 @@ Add a Movie into the catolg
 #### PUT /movies
 Update a Movie
 ###### Request Body example
-```
+```json
 {
   title: "Mummy", // Title of the movie
   overview: "The best movie of the world", // Description of the movie
@@ -229,7 +229,7 @@ Update a Movie
 }
 ```
 ###### Response Body example
-```
+```json
 {
   "id": 3,
   "title": "Mummy",
@@ -249,7 +249,7 @@ Remove a Movie by *movieId*
 #### GET /movies/searchByRating?aboveRating={} 
 Fetch movies where the rating is greater than or equals to *aboveReting*
 ###### Request Body example
-```
+```json
 {
   "status": "OK",
   "message": "Success",
@@ -284,7 +284,7 @@ Fetch movies where the rating is greater than or equals to *aboveReting*
 ```
 #### GET /movies/searchByMovieDirector?movieDirectorId={}
 Fetch Movies by *movieDirectorId*
-```
+```json
 {
   "status": "OK",
   "message": "Success",
@@ -321,7 +321,7 @@ Fetch Movies by *movieDirectorId*
 #### GET /movies/directors/all
 Fetch all movies directors present on the system
 ###### Respone Body example
-```
+```json
 {
   "status": "OK",
   "message": "Success",
@@ -344,7 +344,7 @@ Fetch all movies directors present on the system
 #### GET /movies/directors?movieDirectorId={}
 Fetch a movie director by *movieDirectorId*
 ###### Respone Body example
-```
+```json
 {
   "id": 1,
   "name": "Donald",
@@ -353,9 +353,9 @@ Fetch a movie director by *movieDirectorId*
 }
 ```
 #### POST /movies/directors
-Add a Movie Direcotr into the catolg
+Add a Movie Direcotor into the catolg
 ###### Request Body example
-```
+```json
 {
   "name": "Donald",
   "middleName": "Emeka",
@@ -363,7 +363,7 @@ Add a Movie Direcotr into the catolg
 }
 ```
 ###### Response Body example
-```
+```json
 {
   "id": 3,
   "name": "Donald",
@@ -374,19 +374,36 @@ Add a Movie Direcotr into the catolg
 #### PUT /movies/directors
 Update a Movie Director
 ###### Request Body example
-```
+```json
 {
   "id": 3,
   "name": "Tommy"
 }
 ```
-###### Response Body example
+or
+```json
+{
+  "id": 3,
+  "name": "Tommy",
+  "surname": "Smith"
+}
 ```
+###### Response Body example
+```json
 {
   "id": 3,
   "name": "Tommy",
   "middleName": "Emeka",
   "surname": "Achugo"
+}
+```
+or
+```json
+{
+  "id": 3,
+  "name": "Tommy",
+  "middleName": "Emeka",
+  "surname": "Smith"
 }
 ```
 #### DELETE /movies/directors?movieDirectorId={}
