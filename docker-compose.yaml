@@ -8,9 +8,13 @@ services:
       - POSTGRESQL_USERNAME=m0v1es_user
       - POSTGRESQL_PASSWORD=sodoucs39sq4v5vv
       - POSTGRESQL_DATABASE=movie_db
-#  backend:
-#    depends_on:
-#      - db
-#    build: .
-#    ports:
-#      - 8080:8080
+  backend:
+    depends_on:
+      - db
+    build: .
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/movie_db
+      - SPRING_DATASOURCE_USERNAME=m0v1es_user
+      - SPRING_DATASOURCE_PASSWORD=sodoucs39sq4v5vv
+    ports:
+      - 8080:8080

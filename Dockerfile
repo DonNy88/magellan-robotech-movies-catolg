@@ -1,10 +1,10 @@
 FROM openjdk:8-jdk as BUILD
 WORKDIR /app
 COPY . .
-RUN ./mvnw clean package -Dmaven.test.skip=true
+RUN ./mvnw clean package -Dmaven.test.skip=false
 
 FROM openjdk:8-jdk-alpine
 WORKDIR /app
-COPY --from=BUILD /app/target/MoviesCatalog-*.jar MoviesCatalog.jar
+COPY --from=BUILD /app/target/MoviesCatalog-*.jar app.jar
 EXPOSE 8080
-CMD ["java", "-jar", "MoviesCatalog.jar"]
+CMD ["java", "-jar", "app.jar"]
