@@ -73,4 +73,20 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(responseDTO, responseDTO.getStatus());
     }
 
+    /**
+     *
+     * @param ex
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<ResponseDTO<Void>> handleGeneralException(Exception ex, WebRequest request) {
+        log.error(ex.getMessage(), ex);
+
+        ResponseDTO<Void> responseDTO = ResponseDTO.<Void>builder()
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .message(ex.getMessage()).build();
+
+        return new ResponseEntity<>(responseDTO, responseDTO.getStatus());
+    }
 }
