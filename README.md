@@ -147,16 +147,17 @@ Fetch all movies present on the system
         "surname": "Achugo"
       },
       {
-      "id": 2,
-      "title": "Mask",
-      "overview": "The second best movie",
-      "duration": 230,
-      "rating": 3,
-      "movieDirector": {
-        "id": 1,
-        "name": "Donald",
-        "middleName": "Emeka",
-        "surname": "Achugo"
+        "id": 2,
+        "title": "Mask",
+        "overview": "The second best movie",
+        "duration": 230,
+        "rating": 3,
+        "movieDirector": {
+          "id": 1,
+          "name": "Donald",
+          "middleName": "Emeka",
+          "surname": "Achugo"
+        }
       }
     }
   ]
@@ -170,6 +171,8 @@ or
   "body": []
 }
 ```
+##### Error cases
+
 #### GET /movies?movieId={}
 Fetch a movie by *movieId*
 ###### Respone Body example
@@ -221,11 +224,11 @@ Update a Movie
 ###### Request Body example
 ```json
 {
-  title: "Mummy", // Title of the movie
-  overview: "The best movie of the world", // Description of the movie
-  duration: 300, // Duration in minutes of the movie
-  rating: 3, // Rating of the movie from 1 to 5
-  movieDirectorId: 1, // Movie director id. NB: the movie director has been saved before
+  "title": "Mummy", // Title of the movie
+  "overview": "The best movie of the world", // Description of the movie
+  "duration": 300, // Duration in minutes of the movie
+  "rating": 3, // Rating of the movie from 1 to 5
+  "movieDirectorId": 1, // Movie director id. NB: the movie director has been saved before
 }
 ```
 ###### Response Body example
@@ -267,16 +270,17 @@ Fetch movies where the rating is greater than or equals to *aboveReting*
         "surname": "Achugo"
       },
       {
-      "id": 2,
-      "title": "Mask",
-      "overview": "The second best movie",
-      "duration": 230,
-      "rating": 3,
-      "movieDirector": {
-        "id": 1,
-        "name": "Donald",
-        "middleName": "Emeka",
-        "surname": "Achugo"
+        "id": 2,
+        "title": "Mask",
+        "overview": "The second best movie",
+        "duration": 230,
+        "rating": 3,
+        "movieDirector": {
+          "id": 1,
+          "name": "Donald",
+          "middleName": "Emeka",
+          "surname": "Achugo"
+        }
       }
     }
   ]
@@ -302,16 +306,17 @@ Fetch Movies by *movieDirectorId*
         "surname": "Achugo"
       },
       {
-      "id": 2,
-      "title": "Mask",
-      "overview": "The second best movie",
-      "duration": 230,
-      "rating": 3,
-      "movieDirector": {
-        "id": 1,
-        "name": "Donald",
-        "middleName": "Emeka",
-        "surname": "Achugo"
+        "id": 2,
+        "title": "Mask",
+        "overview": "The second best movie",
+        "duration": 230,
+        "rating": 3,
+        "movieDirector": {
+          "id": 1,
+          "name": "Donald",
+          "middleName": "Emeka",
+          "surname": "Achugo"
+        }
       }
     }
   ]
