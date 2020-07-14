@@ -18,8 +18,9 @@ Simple REST Api that maintains a Movie catalog.
 
 ## Api Calls <a name = "apiCalls"></a>
 
+### Movie Endpoints
 #### GET /movies/all
-##### Retrive all movies present on the system
+Fetch all movies present on the system
 ###### Respone Body example
 ```
 {
@@ -55,7 +56,7 @@ Simple REST Api that maintains a Movie catalog.
 }
 ```
 #### GET /movies?movieId={}
-##### Retrive a movie given a movieId
+Fetch a movie by *movieId*
 ###### Respone Body example
 ```
 {
@@ -73,7 +74,7 @@ Simple REST Api that maintains a Movie catalog.
 }
 ```
 #### POST /movies
-##### Add a Movie into the catolg
+Add a Movie into the catolg
 ###### Request Body example
 ```
 {
@@ -101,7 +102,7 @@ Simple REST Api that maintains a Movie catalog.
 }
 ```
 #### PUT /movies
-#### Update a Movie
+Update a Movie
 ###### Request Body example
 ```
 {
@@ -128,9 +129,153 @@ Simple REST Api that maintains a Movie catalog.
   }
 }
 ```
-#### GET /movies/all - Retrive all moveis present on the 
-#### GET /movies/all - Retrive all moveis present on the 
-
+#### DELETE /movies?movieId={}
+Remove a Movie by *movieId* 
+#### GET /movies/searchByRating?aboveRating={} 
+Fetch movies where the rating is greater than or equals to *aboveReting*
+###### Request Body example
+```
+{
+  "status": "OK",
+  "message": "Success",
+  "body": [
+    {
+      "id": 1,
+      "title": "Mummy",
+      "overview": "The best movie",
+      "duration": 300,
+      "rating": 4,
+      "movieDirector": {
+        "id": 1,
+        "name": "Donald",
+        "middleName": "Emeka",
+        "surname": "Achugo"
+      },
+      {
+      "id": 2,
+      "title": "Mask",
+      "overview": "The second best movie",
+      "duration": 230,
+      "rating": 3,
+      "movieDirector": {
+        "id": 1,
+        "name": "Donald",
+        "middleName": "Emeka",
+        "surname": "Achugo"
+      }
+    }
+  ]
+}
+```
+#### GET /movies/searchByMovieDirector?movieDirectorId={}
+Fetch Movies by *movieDirectorId*
+```
+{
+  "status": "OK",
+  "message": "Success",
+  "body": [
+    {
+      "id": 1,
+      "title": "Mummy",
+      "overview": "The best movie",
+      "duration": 300,
+      "rating": 4,
+      "movieDirector": {
+        "id": 1,
+        "name": "Donald",
+        "middleName": "Emeka",
+        "surname": "Achugo"
+      },
+      {
+      "id": 2,
+      "title": "Mask",
+      "overview": "The second best movie",
+      "duration": 230,
+      "rating": 3,
+      "movieDirector": {
+        "id": 1,
+        "name": "Donald",
+        "middleName": "Emeka",
+        "surname": "Achugo"
+      }
+    }
+  ]
+}
+```
+### Movie Director Endpoints
+#### GET /movies/directors/all
+Fetch all movies directors present on the system
+###### Respone Body example
+```
+{
+  "status": "OK",
+  "message": "Success",
+  "body": [
+    {
+      "id": 1,
+      "name": "Donald",
+      "middleName": "Emeka",
+      "surname": "Achugo"
+    },
+    {
+      "id": 2,
+      "name": "Donald",
+      "middleName": null,
+      "surname": "Trump"
+    }
+  ]
+}
+```
+#### GET /movies/directors?movieDirectorId={}
+Fetch a movie director by *movieDirectorId*
+###### Respone Body example
+```
+{
+  "id": 1,
+  "name": "Donald",
+  "middleName": "Emeka",
+  "surname": "Achugo"
+}
+```
+#### POST /movies/directors
+Add a Movie Direcotr into the catolg
+###### Request Body example
+```
+{
+  "name": "Donald",
+  "middleName": "Emeka",
+  "surname": "Achugo"
+}
+```
+###### Response Body example
+```
+{
+  "id": 3,
+  "name": "Donald",
+  "middleName": "Emeka",
+  "surname": "Achugo"
+}
+```
+#### PUT /movies
+Update a Movie Director
+###### Request Body example
+```
+{
+  "id": 3,
+  "name": "Tommy"
+}
+```
+###### Response Body example
+```
+{
+  "id": 3,
+  "name": "Tommy",
+  "middleName": "Emeka",
+  "surname": "Achugo"
+}
+```
+#### DELETE /movies/directors?movieDirectorId={}
+Remove a Movie Director by *movieDirectorId*
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 

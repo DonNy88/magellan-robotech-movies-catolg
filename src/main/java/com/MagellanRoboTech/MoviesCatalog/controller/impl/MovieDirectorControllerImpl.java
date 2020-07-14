@@ -31,7 +31,7 @@ public class MovieDirectorControllerImpl implements MovieDirectorController {
     @Override
     @GetMapping("/all")
     public ResponseEntity<ResponseDTO<Iterable<MovieDirector>>> getAllMovieDirectors() {
-        log.trace("GET /movies/directors");
+        log.trace("GET /movies/directors/all");
 
         ResponseDTO<Iterable<MovieDirector>> response = ResponseDTO.<Iterable<MovieDirector>>builder()
                 .body(movieDirectorService.getAllMovieDirectors())
