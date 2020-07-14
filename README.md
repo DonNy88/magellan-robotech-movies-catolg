@@ -9,7 +9,7 @@ Simple REST Api that maintains a Movie catalog.
 - [Getting Started](#getting_started)
 - [Deployment](#deployment)
 - [Usage](#usage)
-- [ER Diagram](./MovieCatolg-ER-Diagram.png)
+- [ER Diagram](#erDiagram)
 - [Api Calls](#apiCalls)
 - [Built Using](#built_using)
 - [TODO](./TODO.md)
@@ -35,6 +35,10 @@ For running this Spring Boot Application you need *JDK 8*, *Docker* and *Docker 
 - JDK 8 for Windows [Link](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 - JDK 8 for Mac [Link](https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html)
 
+## 🚀 Deployment <a name = "deployment"></a>
+
+Please, see [TODO](./TODO.md) file.
+
 
 ## 🎈 Usage <a name="usage"></a>
 
@@ -54,6 +58,10 @@ docker-compose up
 ```
 ./mvnw test
 ```
+## ER Diagram <a name = "erDiagram"></a>
+
+
+![ER Diagram](./MovieCatolg-ER-Diagram.png "ER Diagram")
 
 ## Api Calls <a name = "apiCalls"></a>
 
