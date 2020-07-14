@@ -89,12 +89,24 @@ public class MovieControllerImpl implements MovieController {
     }
 
     @Override
-    @GetMapping("/search")
+    @GetMapping("/searchByRating")
     public ResponseEntity<ResponseDTO<Iterable<Movie>>> getMoviesAboveGivenRating(@PathParam("aboveRating") Integer aboveRating) {
-        log.trace("GET /movies/search?aboveRating={}", aboveRating);
+        log.trace("GET /movies/searchByRating?aboveRating={}", aboveRating);
 
         ResponseDTO<Iterable<Movie>> response = ResponseDTO.<Iterable<Movie>>builder()
                 .body(movieService.searchMoviesAboveGivenRating(aboveRating))
+                .build();
+
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    @GetMapping("/searchByMovieDirector")
+    public ResponseEntity<ResponseDTO<Iterable<Movie>>> getMoviesByMovieDirector(@PathParam("movieDirectorId") Long movieDirectorId) {
+        log.trace("GET /movies/searchByMovieDirector?movieDirectorId={}", movieDirectorId);
+
+        ResponseDTO<Iterable<Movie>> response = ResponseDTO.<Iterable<Movie>>builder()
+                .body(movieService.searchMoviesByMovieDirector(movieDirectorId))
                 .build();
 
         return ResponseEntity.ok(response);

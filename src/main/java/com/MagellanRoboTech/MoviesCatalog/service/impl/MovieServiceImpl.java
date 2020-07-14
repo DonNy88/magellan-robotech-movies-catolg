@@ -1,9 +1,6 @@
 package com.MagellanRoboTech.MoviesCatalog.service.impl;
 
-import com.MagellanRoboTech.MoviesCatalog.exception.MovieRatingOutOfBoundsException;
-import com.MagellanRoboTech.MoviesCatalog.exception.NoArgsProvidedException;
-import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieDirectorFoundException;
-import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieFoundException;
+import com.MagellanRoboTech.MoviesCatalog.exception.*;
 import com.MagellanRoboTech.MoviesCatalog.model.Movie;
 import com.MagellanRoboTech.MoviesCatalog.model.MovieDirector;
 import com.MagellanRoboTech.MoviesCatalog.repository.MovieDirectorRepository;
@@ -118,6 +115,22 @@ public class MovieServiceImpl implements MovieService {
         if (IterableUtils.isEmpty(movies)) {
             log.debug("No movies with rating above then {}", aboveRating);
             throw new NoMovieFoundException();
+        }
+
+        return movies;
+    }
+
+    @Override
+    public Iterable<Movie> searchMoviesByMovieDirector(Long movieDirectorId) throws NoMovieDirectorFoundException, NoMovieDirectedFoundException {
+        if (!movieDirectorRepository.existsById(movieDirectorId)) {
+            log.error("No Movie Director with id {} found", movieDirectorId);
+            throw new NoMovieDirectorFoundException();
+        }
+
+        Iterable<Movie> movies = movieRepository.findAllByMovieDirectorId(movieDirectorId);
+        if (IterableUtils.isEmpty(movies)) {
+            log.debug("The Movie Director {} has directed no movie yet", movieDirectorId);
+            throw new NoMovieDirectedFoundException();
         }
 
         return movies;
