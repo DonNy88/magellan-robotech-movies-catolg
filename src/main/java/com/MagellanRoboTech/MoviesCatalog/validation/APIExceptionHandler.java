@@ -30,7 +30,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
         log.error(ex.getMessage(), ex);
 
         FieldError fieldError = ex.getBindingResult().getFieldError();
-        ResponseDTO responseDTO = ResponseDTO.builder()
+        ResponseDTO<Void> responseDTO = ResponseDTO.<Void>builder()
                 .status(status)
                 .message(fieldError.getDefaultMessage())
                 .build();
@@ -45,13 +45,13 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
      * @return
      */
     @ExceptionHandler(NotFoundException.class)
-    public final ResponseEntity<ResponseDTO> handleNoMovieFoundException(Exception ex, WebRequest request) {
+    public final ResponseEntity<ResponseDTO<Void>> handleNoMovieFoundException(Exception ex, WebRequest request) {
         log.error(ex.getMessage(), ex);
 
-        ResponseDTO responseDTO = ResponseDTO.builder()
+        ResponseDTO<Void> responseDTO = ResponseDTO.<Void>builder()
                 .status(HttpStatus.NOT_FOUND)
                 .message(ex.getMessage()).build();
 
-        return new ResponseEntity(responseDTO, responseDTO.getStatus());
+        return new ResponseEntity<>(responseDTO, responseDTO.getStatus());
     }
 }

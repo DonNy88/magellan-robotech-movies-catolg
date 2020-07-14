@@ -15,7 +15,7 @@ public class RequestPostMovieDirectorDTO {
     @Size(max = 70, message = "The field middleName length cannot be more then 70 chars")
     private String middleName;
 
-    @NotBlank(message = "The field name cannot be blank")
+    @NotBlank(message = "The field surname cannot be blank")
     @Size(max = 70, message = "The field surname length cannot be more then 70 chars")
     private String surname;
 }

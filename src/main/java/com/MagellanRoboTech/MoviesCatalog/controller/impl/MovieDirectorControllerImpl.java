@@ -33,7 +33,7 @@ public class MovieDirectorControllerImpl implements MovieDirectorController {
     public ResponseEntity<ResponseDTO<Iterable<MovieDirector>>> getAllMovieDirectors() {
         log.trace("GET /movies/directors");
 
-        ResponseDTO response = ResponseDTO.builder()
+        ResponseDTO<Iterable<MovieDirector>> response = ResponseDTO.<Iterable<MovieDirector>>builder()
                 .body(movieDirectorService.getAllMovieDirectors())
                 .build();
 
@@ -45,7 +45,7 @@ public class MovieDirectorControllerImpl implements MovieDirectorController {
     public ResponseEntity<ResponseDTO<MovieDirector>> getMovieDirector(@PathParam("movieDirectorId") Long movieDirectorId) {
         log.trace("GET /movies/directors?movieDirectorId={}", movieDirectorId);
 
-        ResponseDTO response = ResponseDTO.builder()
+        ResponseDTO<MovieDirector> response = ResponseDTO.<MovieDirector>builder()
                 .body(movieDirectorService.getMovieDirector(movieDirectorId))
                 .build();
 
@@ -57,12 +57,12 @@ public class MovieDirectorControllerImpl implements MovieDirectorController {
     public ResponseEntity<ResponseDTO<MovieDirector>> addMovieDirector(@RequestBody @Valid RequestPostMovieDirectorDTO movieDirector) {
         log.trace("POST /movies/directors {}", movieDirector.toString());
 
-        ResponseDTO response = ResponseDTO.builder()
+        ResponseDTO<MovieDirector> response = ResponseDTO.<MovieDirector>builder()
                 .status(HttpStatus.CREATED)
                 .body(movieDirectorService.saveMovieDirector(new ModelMapper().map(movieDirector, MovieDirector.class)))
                 .build();
 
-        return new ResponseEntity(response, response.getStatus());
+        return new ResponseEntity<>(response, response.getStatus());
     }
 
     @Override
@@ -70,7 +70,7 @@ public class MovieDirectorControllerImpl implements MovieDirectorController {
     public ResponseEntity<ResponseDTO<MovieDirector>> updateMovieDirector(@RequestBody @Valid RequestPutMovieDirectorDTO movieDirector) {
         log.trace("PUT /movies/directors {}", movieDirector.toString());
 
-        ResponseDTO response = ResponseDTO.builder()
+        ResponseDTO<MovieDirector> response = ResponseDTO.<MovieDirector>builder()
                 .body(movieDirectorService.updateMovieDirector(new ModelMapper().map(movieDirector, MovieDirector.class)))
                 .build();
 
@@ -78,11 +78,12 @@ public class MovieDirectorControllerImpl implements MovieDirectorController {
     }
 
     @Override
+    @DeleteMapping
     public ResponseEntity<ResponseDTO<Void>> deleteMovieDirector(@PathParam("movieDirectorId") Long movieDirectorId) {
-        log.trace("DELETE /movies/directors?movieId={}", movieDirectorId);
+        log.trace("DELETE /movies/directors?movieDirectorId={}", movieDirectorId);
 
         movieDirectorService.removeMovieDirector(movieDirectorId);
-        ResponseDTO response = ResponseDTO.builder().build();
+        ResponseDTO<Void> response = ResponseDTO.<Void>builder().build();
 
         return ResponseEntity.ok(response);
     }

@@ -25,4 +25,6 @@ public class RequestPutMovieDTO {
     @Min(value = 1, message = "The field rating must be greater than or equal to 1")
     @Max(value = 5, message = "The field rating must be less than or equal to 5")
     private Integer rating;
+
+    private Long movieDirectorId;
 }
