@@ -9,9 +9,10 @@ Simple REST Api that maintains a Movie catalog.
 - [Getting Started](#getting_started)
 - [Deployment](#deployment)
 - [Usage](#usage)
+- [ER Diagram](./MovieCatolg-ER-Diagram.png)
 - [Api Calls](#apiCalls)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
+- [TODO](./TODO.md)
 - [Authors](#authors)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
