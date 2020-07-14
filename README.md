@@ -171,24 +171,35 @@ or
   "body": []
 }
 ```
-##### Error cases
-
 #### GET /movies?movieId={}
 Fetch a movie by *movieId*
 ###### Respone Body example
 ```json
 {
-  "id": 2,
-  "title": "Mask",
-  "overview": "The second best movie",
-  "duration": 230,
-  "rating": 3,
-  "movieDirector": {
-    "id": 1,
-    "name": "Donald",
-    "middleName": "Emeka",
-    "surname": "Achugo"
+  "status": "OK",
+  "message": "Success",
+  "body": {
+    "id": 2,
+    "title": "Mask",
+    "overview": "The second best movie",
+    "duration": 230,
+    "rating": 3,
+    "movieDirector": {
+      "id": 1,
+      "name": "Donald",
+      "middleName": "Emeka",
+      "surname": "Achugo"
+    }
   }
+}
+```
+##### Exception Cases
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No movie found",
+  "body": null
 }
 ```
 #### POST /movies
@@ -206,17 +217,30 @@ Add a Movie into the catolg
 ###### Response Body example
 ```json
 {
-  "id": 3,
-  "title": "Mummy",
-  "overview": "The second best movie",
-  "duration": 300,
-  "rating": 3,
-  "movieDirector": {
-    "id": 1,
-    "name": "Donald",
-    "middleName": "Emeka",
-    "surname": "Achugo"
+  "status": "CREATED",
+  "message": "Success",
+  "body": {
+    "id": 3,
+    "title": "Mummy",
+    "overview": "The second best movie",
+    "duration": 300,
+    "rating": 3,
+    "movieDirector": {
+      "id": 1,
+      "name": "Donald",
+      "middleName": "Emeka",
+      "surname": "Achugo"
+    }
   }
+}
+```
+##### Exception Cases
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No Movie Director found",
+  "body": null
 }
 ```
 #### PUT /movies
@@ -234,24 +258,62 @@ Update a Movie
 ###### Response Body example
 ```json
 {
-  "id": 3,
-  "title": "Mummy",
-  "overview": "The second best movie",
-  "duration": 300,
-  "rating": 3,
-  "movieDirector": {
-    "id": 1,
-    "name": "Donald",
-    "middleName": "Emeka",
-    "surname": "Achugo"
+  "status": "OK",
+  "message": "Success",
+  "body": {
+    "id": 3,
+    "title": "Mummy",
+    "overview": "The second best movie",
+    "duration": 300,
+    "rating": 3,
+    "movieDirector": {
+      "id": 1,
+      "name": "Donald",
+      "middleName": "Emeka",
+      "surname": "Achugo"
+    }
   }
 }
 ```
+##### Exception Cases
+###### Status Code 400 BAD REQUEST
+```json
+{
+  "status": "BAD REQUEST",
+  "message": "No arguments provided",
+  "body": null
+}
+```
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No movie found",
+  "body": null
+}
+```
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No Movie Director found",
+  "body": null
+}
+```
 #### DELETE /movies?movieId={}
-Remove a Movie by *movieId* 
+Remove a Movie by *movieId*
+##### Exception Cases
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No movie found",
+  "body": null
+}
+```
 #### GET /movies/searchByRating?aboveRating={} 
 Fetch movies where the rating is greater than or equals to *aboveReting*
-###### Request Body example
+###### Response Body example
 ```json
 {
   "status": "OK",
@@ -284,6 +346,23 @@ Fetch movies where the rating is greater than or equals to *aboveReting*
       }
     }
   ]
+}
+```
+##### Exception Cases
+###### Status Code 400 BAD REQUEST
+```json
+{
+  "status": "BAD_REQUEST",
+  "message": "Rating must be greater than 0 and less than 6",
+  "body": null
+}
+```
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No movie found",
+  "body": null
 }
 ```
 #### GET /movies/searchByMovieDirector?movieDirectorId={}
@@ -322,6 +401,23 @@ Fetch Movies by *movieDirectorId*
   ]
 }
 ```
+##### Exception Cases
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No Movie Director found",
+  "body": null
+}
+```
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "The Movie Director has directed no movie yet",
+  "body": null
+}
+```
 ### Movie Director Endpoints
 #### GET /movies/directors/all
 Fetch all movies directors present on the system
@@ -346,19 +442,40 @@ Fetch all movies directors present on the system
   ]
 }
 ```
+or
+```json
+{
+  "status": "OK",
+  "message": "Success",
+  "body": []
+}
+```
 #### GET /movies/directors?movieDirectorId={}
 Fetch a movie director by *movieDirectorId*
 ###### Respone Body example
 ```json
 {
-  "id": 1,
-  "name": "Donald",
-  "middleName": "Emeka",
-  "surname": "Achugo"
+  "status": "OK",
+  "message": "Success",
+  "body": {
+    "id": 1,
+    "name": "Donald",
+    "middleName": "Emeka",
+    "surname": "Achugo"
+  }
+}
+```
+##### Exception Cases
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No Movie Director found",
+  "body": null
 }
 ```
 #### POST /movies/directors
-Add a Movie Direcotor into the catolg
+Add a Movie Direcotor into the catolog
 ###### Request Body example
 ```json
 {
@@ -370,10 +487,14 @@ Add a Movie Direcotor into the catolg
 ###### Response Body example
 ```json
 {
-  "id": 3,
-  "name": "Donald",
-  "middleName": "Emeka",
-  "surname": "Achugo"
+  "status": "CREATED",
+  "message": "Success",
+  "body": {
+    "id": 3,
+    "name": "Donald",
+    "middleName": "Emeka",
+    "surname": "Achugo"
+  }
 }
 ```
 #### PUT /movies/directors
@@ -396,24 +517,57 @@ or
 ###### Response Body example
 ```json
 {
-  "id": 3,
-  "name": "Tommy",
-  "middleName": "Emeka",
-  "surname": "Achugo"
+  "status": "OK",
+  "message": "Success",
+  "body": {
+    "id": 3,
+    "name": "Tommy",
+    "middleName": "Emeka",
+    "surname": "Achugo"
+  }
 }
 ```
 or
 ```json
 {
-  "id": 3,
-  "name": "Tommy",
-  "middleName": "Emeka",
-  "surname": "Smith"
+  "status": "OK",
+  "message": "Success",
+  "body": {
+    "id": 3,
+    "name": "Tommy",
+    "middleName": "Emeka",
+    "surname": "Smith"
+  }
+}
+```
+##### Exception Cases
+###### Status Code 400 BAD REQUEST
+```json
+{
+  "status": "BAD REQUEST",
+  "message": "No arguments provided",
+  "body": null
+}
+```
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No Movie Director found",
+  "body": null
 }
 ```
 #### DELETE /movies/directors?movieDirectorId={}
 Remove a Movie Director by *movieDirectorId*
-
+##### Exception Cases
+###### Status Code 404 NOT FOUND
+```json
+{
+  "status": "NOT_FOUND",
+  "message": "No Movie Director found",
+  "body": null
+}
+```
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [Docker](https://www.docker.com/)
