@@ -162,6 +162,14 @@ Fetch all movies present on the system
   ]
 }
 ```
+or
+```
+{
+  "status": "OK",
+  "message": "Success",
+  "body": []
+}
+```
 #### GET /movies?movieId={}
 Fetch a movie by *movieId*
 ###### Respone Body example
