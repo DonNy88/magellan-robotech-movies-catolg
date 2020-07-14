@@ -25,6 +25,7 @@ public class MovieDirector {
     @Size(max = 70, message = "The field surname length cannot be more then 70 chars")
     private String surname;
 
-    @OneToMany
-    private Set<Movie> movies = new HashSet<>();
+//    // Not required
+//    @OneToMany
+//    private Set<Movie> movies;
 }

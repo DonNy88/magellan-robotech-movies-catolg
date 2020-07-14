@@ -47,5 +47,5 @@ public interface MovieController {
      * @param aboveRating
      * @return
      */
-    ResponseEntity<ResponseDTO<Iterable<Movie>>> getMoviesAboveGivenRating(Long aboveRating);
+    ResponseEntity<ResponseDTO<Iterable<Movie>>> getMoviesAboveGivenRating(Integer aboveRating);
 }
