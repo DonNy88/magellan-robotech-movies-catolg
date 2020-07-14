@@ -10,6 +10,7 @@ Simple REST Api that maintains a Movie catalog.
 - [Deployment](#deployment)
 - [Usage](#usage)
 - [ER Diagram](#erDiagram)
+- [Project Structure](#projectStructure)
 - [Api Calls](#apiCalls)
 - [Built Using](#built_using)
 - [TODO](./TODO.md)
@@ -62,6 +63,65 @@ docker-compose up
 
 
 ![ER Diagram](./MovieCatolg-ER-Diagram.png "ER Diagram")
+
+## Project Structure <a name = "projectStructure"></a>
+```
+.
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── MagellanRoboTech
+│   │           └── MoviesCatalog
+│   │               ├── MoviesCatalogApplication.java
+│   │               ├── controller
+│   │               │   ├── MovieController.java
+│   │               │   ├── MovieDirectorController.java
+│   │               │   └── impl
+│   │               │       ├── MovieControllerImpl.java
+│   │               │       └── MovieDirectorControllerImpl.java
+│   │               ├── dto
+│   │               │   ├── RequestPostMovieDTO.java
+│   │               │   ├── RequestPostMovieDirectorDTO.java
+│   │               │   ├── RequestPutMovieDTO.java
+│   │               │   ├── RequestPutMovieDirectorDTO.java
+│   │               │   └── ResponseDTO.java
+│   │               ├── exception
+│   │               │   ├── MovieCatalogException.java
+│   │               │   ├── MovieRatingOutOfBoundsException.java
+│   │               │   ├── NoArgsProvidedException.java
+│   │               │   ├── NoMovieDirectedFoundException.java
+│   │               │   ├── NoMovieDirectorFoundException.java
+│   │               │   ├── NoMovieFoundException.java
+│   │               │   └── NotFoundException.java
+│   │               ├── model
+│   │               │   ├── Movie.java
+│   │               │   └── MovieDirector.java
+│   │               ├── repository
+│   │               │   ├── MovieDirectorRepository.java
+│   │               │   └── MovieRepository.java
+│   │               ├── service
+│   │               │   ├── MovieDirectorService.java
+│   │               │   ├── MovieService.java
+│   │               │   └── impl
+│   │               │       ├── MovieDirectorServiceImpl.java
+│   │               │       └── MovieServiceImpl.java
+│   │               └── validation
+│   │                   └── APIExceptionHandler.java
+│   └── resources
+│       └── application.yaml
+└── test
+    ├── java
+    │   └── com
+    │       └── MagellanRoboTech
+    │           └── MoviesCatalog
+    │               ├── MoviesCatalogApplicationTests.java
+    │               ├── controller
+    │               │   └── MovieControllerTests.java
+    │               └── repository
+    │                   └── MovieRepositoryTests.java
+    └── resources
+        └── application.yaml
+```
 
 ## Api Calls <a name = "apiCalls"></a>
 
