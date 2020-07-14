@@ -41,4 +41,11 @@ public interface MovieController {
      * @return
      */
     ResponseEntity<ResponseDTO<Void>> deleteMovie(Long movieId);
+
+    /**
+     *
+     * @param aboveRating
+     * @return
+     */
+    ResponseEntity<ResponseDTO<Iterable<Movie>>> getMoviesAboveGivenRating(Long aboveRating);
 }

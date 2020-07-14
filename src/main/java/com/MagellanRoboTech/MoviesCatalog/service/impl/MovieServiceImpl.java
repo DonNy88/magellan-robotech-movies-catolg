@@ -1,5 +1,6 @@
 package com.MagellanRoboTech.MoviesCatalog.service.impl;
 
+import com.MagellanRoboTech.MoviesCatalog.exception.MovieRatingOutOfBoundsException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoArgsProvidedException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieDirectorFoundException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieFoundException;
@@ -9,10 +10,10 @@ import com.MagellanRoboTech.MoviesCatalog.repository.MovieDirectorRepository;
 import com.MagellanRoboTech.MoviesCatalog.repository.MovieRepository;
 import com.MagellanRoboTech.MoviesCatalog.service.MovieService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import java.util.Optional;
 
@@ -60,7 +61,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie updateMovie(Movie movie) throws NoArgsProvidedException, NoMovieFoundException {
+    public Movie updateMovie(Movie movie) throws NoArgsProvidedException, NoMovieFoundException, NoMovieDirectorFoundException {
         Optional<Movie> optionalMovieToUpdate = movieRepository.findById(movie.getId());
         if (!optionalMovieToUpdate.isPresent()) {
             log.error("No Movie with id {} found", movie.getId());
@@ -69,7 +70,9 @@ public class MovieServiceImpl implements MovieService {
 
         if (StringUtils.isAllBlank(movie.getOverview(), movie.getTitle())
                 && movie.getDuration() == null
-                && movie.getRating() == null) {
+                && movie.getRating() == null
+                && (movie.getMovieDirector() == null || (movie.getMovieDirector() != null
+                    && movie.getMovieDirector().getId() == null))) {
             log.error("No args provided");
             throw new NoArgsProvidedException();
         }
@@ -79,6 +82,17 @@ public class MovieServiceImpl implements MovieService {
         movieToUpdate.setOverview(Optional.ofNullable(movie.getOverview()).orElse(movieToUpdate.getOverview()));
         movieToUpdate.setRating(Optional.ofNullable(movie.getRating()).orElse(movieToUpdate.getRating()));
         movieToUpdate.setTitle(Optional.ofNullable(movie.getTitle()).orElse(movieToUpdate.getTitle()));
+
+        // Update Movie Director if it is necessary
+        if (movie.getMovieDirector() != null) {
+            Optional<MovieDirector> optionalMovieDirectorToUpdate = movieDirectorRepository.findById(movie.getMovieDirector().getId());
+            if (!optionalMovieDirectorToUpdate.isPresent()) {
+                log.error("No Movie Director with id {} found", movie.getMovieDirector().getId());
+                throw new NoMovieDirectorFoundException();
+            }
+
+            movieToUpdate.setMovieDirector(optionalMovieDirectorToUpdate.get());
+        }
 
         return movieRepository.save(movieToUpdate);
     }
@@ -91,5 +105,21 @@ public class MovieServiceImpl implements MovieService {
         }
 
         movieRepository.deleteById(id);
+    }
+
+    @Override
+    public Iterable<Movie> searchMoviesAboveGivenRating(Long aboveRating) throws NoMovieFoundException, MovieRatingOutOfBoundsException {
+        if (aboveRating < 1 || aboveRating > 5) {
+            log.debug("Rating must be greater than 0 and less then 6");
+            throw new MovieRatingOutOfBoundsException();
+        }
+
+        Iterable<Movie> movies = movieRepository.findAllByRatingGreaterThanEqual(aboveRating);
+        if (!IterableUtils.isEmpty(movies)) {
+            log.debug("No movies with rating above then {}", aboveRating);
+            throw new NoMovieFoundException();
+        }
+
+        return movies;
     }
 }

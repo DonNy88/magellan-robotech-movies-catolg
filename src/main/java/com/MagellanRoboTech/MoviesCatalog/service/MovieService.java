@@ -1,5 +1,6 @@
 package com.MagellanRoboTech.MoviesCatalog.service;
 
+import com.MagellanRoboTech.MoviesCatalog.exception.MovieRatingOutOfBoundsException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoArgsProvidedException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieDirectorFoundException;
 import com.MagellanRoboTech.MoviesCatalog.exception.NoMovieFoundException;
@@ -35,8 +36,9 @@ public interface MovieService {
      * @return
      * @throws NoArgsProvidedException
      * @throws NoMovieFoundException
+     * @throws NoMovieDirectorFoundException
      */
-    Movie updateMovie(Movie movie) throws NoArgsProvidedException, NoMovieFoundException;
+    Movie updateMovie(Movie movie) throws NoArgsProvidedException, NoMovieFoundException, NoMovieDirectorFoundException;
 
     /**
      *
@@ -44,4 +46,13 @@ public interface MovieService {
      * @throws NoMovieFoundException
      */
     void removeMovie(Long id) throws NoMovieFoundException;
+
+    /**
+     *
+     * @param aboveRating
+     * @return
+     * @throws NoMovieFoundException
+     * @throws MovieRatingOutOfBoundsException
+     */
+    Iterable<Movie> searchMoviesAboveGivenRating(Long aboveRating) throws NoMovieFoundException, MovieRatingOutOfBoundsException;
 }
