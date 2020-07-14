@@ -6,15 +6,53 @@ Simple REST Api that maintains a Movie catalog.
 
 ## 📝 Table of Contents
 
-- [Api Calls](#apiCalls)
 - [Getting Started](#getting_started)
 - [Deployment](#deployment)
 - [Usage](#usage)
+- [Api Calls](#apiCalls)
 - [Built Using](#built_using)
 - [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+
+## 🏁 Getting Started <a name = "getting_started"></a>
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+Clone this project with this bash command:
+```bash
+git clone https://github.com/DonNy88/magellan-robotech-movies-catolg.git
+```
+
+For running this Spring Boot Application you need *JDK 8*, *Docker* and *Docker Compose*. If you do not have these things yet here below you can find where to get them.
+
+
+- Docker for Windows [Link](https://docs.docker.com/docker-for-windows/install/)
+- Docker for OS X [Link](https://docs.docker.com/docker-for-mac/install/)
+- Docker compose [Link](https://docs.docker.com/compose/install/)
+- JDK 8 for Windows [Link](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+- JDK 8 for Mac [Link](https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html)
+
+
+## 🎈 Usage <a name="usage"></a>
+
+For run this Spring Boot Application use this command:
+
+```bash
+docker-compose up
+```
+
+## 🔧 Running the tests <a name = "tests"></a>
+
+##### MS Dos
+```
+./mvnw.cmd test
+```
+##### Unix-like
+```
+./mvnw test
+```
 
 ## Api Calls <a name = "apiCalls"></a>
 
@@ -277,39 +315,6 @@ Update a Movie Director
 #### DELETE /movies/directors?movieDirectorId={}
 Remove a Movie Director by *movieDirectorId*
 
-## 🏁 Getting Started <a name = "getting_started"></a>
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-For running this Spring Boot Application you need *JDK 8*, *Docker* and *Docker Compose*. If you do not have these things yet here below you can find where to get them.
-
-## 🎈 Usage <a name="usage"></a>
-
-For run this Spring Boot Application use this command:
-
-```bash
-docker-compose up
-```
-
-- Docker for Windows [Link](https://docs.docker.com/docker-for-windows/install/)
-- Docker for OS X [Link](https://docs.docker.com/docker-for-mac/install/)
-- Docker compose [Link](https://docs.docker.com/compose/install/)
-- JDK 8 for Windows [Link](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
-- JDK 8 for Mac [Link](https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html)
-
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-##### MS Dos
-```
-./mvnw.cmd test
-```
-##### Unix-like
-```
-./mvnw test
-```
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [Docker](https://www.docker.com/)
