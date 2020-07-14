@@ -48,4 +48,11 @@ public interface MovieController {
      * @return
      */
     ResponseEntity<ResponseDTO<Iterable<Movie>>> getMoviesAboveGivenRating(Integer aboveRating);
+
+    /**
+     *
+     * @param movieDirectorId
+     * @return
+     */
+    ResponseEntity<ResponseDTO<Iterable<Movie>>> getMoviesByMovieDirector(Long movieDirectorId);
 }
