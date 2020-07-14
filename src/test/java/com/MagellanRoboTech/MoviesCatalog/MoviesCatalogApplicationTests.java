@@ -10,7 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class MoviesCatalogApplicationTests {
 
 	@Test
-	void contextLoads() {
-	}
+	public void contextLoads() { }
+
+
 
 }
