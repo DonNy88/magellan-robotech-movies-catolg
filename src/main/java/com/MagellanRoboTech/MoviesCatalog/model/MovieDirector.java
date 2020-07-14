@@ -1,6 +1,8 @@
 package com.MagellanRoboTech.MoviesCatalog.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class MovieDirector {
 
@@ -24,8 +28,4 @@ public class MovieDirector {
     @NotBlank(message = "The field name cannot be blank")
     @Size(max = 70, message = "The field surname length cannot be more then 70 chars")
     private String surname;
-
-//    // Not required
-//    @OneToMany
-//    private Set<Movie> movies;
 }
