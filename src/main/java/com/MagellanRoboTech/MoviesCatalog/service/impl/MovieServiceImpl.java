@@ -115,7 +115,7 @@ public class MovieServiceImpl implements MovieService {
         }
 
         Iterable<Movie> movies = movieRepository.findAllByRatingGreaterThanEqual(aboveRating);
-        if (!IterableUtils.isEmpty(movies)) {
+        if (IterableUtils.isEmpty(movies)) {
             log.debug("No movies with rating above then {}", aboveRating);
             throw new NoMovieFoundException();
         }
