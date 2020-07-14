@@ -10,6 +10,9 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity that maps the Db table movie_director.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
