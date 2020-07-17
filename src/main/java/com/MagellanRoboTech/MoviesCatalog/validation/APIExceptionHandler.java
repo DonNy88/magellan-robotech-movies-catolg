@@ -35,7 +35,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
-     * Exception Handler that catch oll {@link NotFoundException} and response with Dto Object with NOT FOUND.
+     * Exception Handler that catch all {@link NotFoundException} and response with Dto Object with NOT FOUND.
      *
      * @param ex the exception
      * @param request the REST request
@@ -53,7 +53,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
-     * Exception Handler that catch oll {@link MovieCatalogException} and response with Dto Object with BAD REQUEST.
+     * Exception Handler that catch all {@link MovieCatalogException} and response with Dto Object with BAD REQUEST.
      *
      * @param ex the exception
      * @param request the REST request
@@ -71,7 +71,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
-     * General Exception Handler that catch oll {@link Exception} and response with Dto Object with INTERNAL SERVER ERROR.
+     * General Exception Handler that catch all {@link Exception} and response with Dto Object with INTERNAL SERVER ERROR.
      * Not should be never invoked.
      *
      * @param ex the exception

@@ -21,6 +21,7 @@ public class Movie {
     private Long id;
 
     @NotBlank(message = "The field title cannot be blank")
+    @Size(max=100, message = "The title max length is 100 characters")
     private String title;
     @NotBlank(message = "The field overview cannot be blank")
     @Size(max=255, message = "The overview max length is 255 characters")
